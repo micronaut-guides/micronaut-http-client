@@ -1,0 +1,13 @@
+Tt is time to take a look at Micronaut’s support for declarative clients via the Client annotation.
+
+Create `BintrayClient` which clearly illustrates how a declarative Micronaut HTTP Client, which is generated at compile-time, simplifies our code.
+
+[source,java]
+.src/main/java/example/micronaut/BintrayClient.java
+----
+include::{sourceDir}/src/main/java/example/micronaut/BintrayClient.java[]
+----
+
+<1> URL of the remote service
+<2> You can use configuration parameter interpolation when you define the path of the GET endpoint.
+<3> You can return reactive types, such as an RxJava `Flowable`.

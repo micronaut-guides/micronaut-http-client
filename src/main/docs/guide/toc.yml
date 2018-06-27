@@ -1,0 +1,14 @@
+gettingStarted: 
+  title: Getting Started
+  requirements: What you will need
+  solution: Solution
+writingTheApp: Writing the App
+bintray: Bintray API
+lowlevelclient: Low Level Client
+declarativeclient: Declarative Client
+controller: Controller
+tests: Test
+testingTheApp:
+  title: Testing the Application
+httpClientFilter: Http Client Filter
+next: Where To Go From Here?

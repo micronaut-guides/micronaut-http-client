@@ -1,0 +1,11 @@
+micronaut:
+    application:
+        name: httpclientguide
+    server:
+        port: 8080
+#tag::bintrayconfig[]
+bintray:
+    organization: micronaut
+    repository: profiles
+    apiversion: v1
+#end::bintrayconfig[]

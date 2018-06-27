@@ -1,0 +1,23 @@
+In this guide, you are going to consume the https://bintray.com/docs/api/[Bintray API] from a Micronaut application.
+
+In particular, we consume the https://bintray.com/docs/api/#_get_packages[Get Packages] endpoint.
+
+____
+Get a list of packages in the specified repository, optionally specify a starting position and/or a name prefix filter.
+____
+
+This API resource can be consumed by both authenticated and anonymous clients.
+
+Initially, you will consume it anonymously, later we will discuss authentication.
+
+Modify `src/main/resources/application.yml` to create some configuration parameters.
+
+[source,java]
+.src/main/resources/application.yml
+----
+include::{sourceDir}/src/main/resources/application.yml[tag=bintrayconfig]
+----
+
+In this guides, you are going to fetch Micronaut profiles packages. Those packages are used by the Micronaut CLI.
+
+To consume the Bintray API, you will use Micronaut HTTP Client.

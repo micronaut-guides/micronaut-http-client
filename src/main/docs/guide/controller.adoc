@@ -1,0 +1,13 @@
+Create a Controller which uses both clients in two different endpoints:
+
+
+[source,java]
+.src/main/java/example/micronaut/BintrayController.java
+----
+include::{sourceDir}/src/main/java/example/micronaut/BintrayController.java[]
+----
+
+<1> The class is defined as a controller with the http://docs.micronaut.io/snapshot/api/io/micronaut/http/annotation/Controller.html[@Controller] annotation mapped to the path `/bintray`
+<2> Inject beans via constructor injection.
+<3> The http://docs.micronaut.io/snapshot/api/io/micronaut/http/annotation/Get.html[@Get] annotation is used to map the index method to all requests that use an HTTP GET
+<4> You can return reactive types, such as an RxJava `Flowable`.

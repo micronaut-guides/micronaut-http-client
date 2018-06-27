@@ -1,0 +1,50 @@
+Often, you need to include the same HTTP headers or URL parameters in a set of requests against a third-party API or when calling another Microservice.
+
+To simplify this, Micronaut includes the ability to define `HttpClientFilter` classes that are applied to all matching HTTP clients.
+
+For real world example, let us provide Bintray Authentication via a `HttpClientFilter`:
+
+____
+The Bintray REST API requires an applicative API key. An API key can be obtained from the user profile page. Authentication is achieved using HTTP Basic Authentication with the user’s name as username and the API key as the password. Authenticated REST calls should only be used via HTTPs.
+____
+
+Create a Filter:
+
+[source,java]
+.src/main/java/example/micronaut/BintrayFilter.java
+----
+include::{sourceDir}/src/main/java/example/micronaut/BintrayFilter.java[]
+----
+
+<1> Supply the pattern you want to match to the `@Filter` annotation.
+<2> Bean will not loaded unless configuration properties are set.
+<3> Constructor injection of the configuration parameters.
+<4> Enhance every request sent to Bintray API providing Basic Authentication.
+
+==== Configuration Parameters
+
+Add your Bintray `username` and `token` to `src/main/resource/application.yml`
+
+[source, yaml]
+----
+bintray:
+    organization: micronaut
+    repository: profiles
+    apiversion: v1
+    username: yourbintrayusername
+    token: XXXXXXXXXXX
+----
+
+Add to `src/main/resources/logback.xml`, a logger to see Micronaut's HTTP client output.
+
+[source, xml]
+----
+<logger name="io.micronaut.http.client" level="TRACE"/>
+----
+
+If you run again the tests, you will see the that the Filter is invoked and HTTP Basic Auth is used against Bintray API.
+
+[source, bash]
+-----
+13:21:08.981 [nioEventLoopGroup-1-14] TRACE i.m.http.client.DefaultHttpClient - Authorization: Basic XXXXXXXXXXXXXX
+-----
