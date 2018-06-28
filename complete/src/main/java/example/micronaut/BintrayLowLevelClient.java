@@ -23,9 +23,8 @@ public class BintrayLowLevelClient {
     }
 
     Maybe<List<BintrayPackage>> fetchPackages() {
-        HttpRequest req = HttpRequest.GET(UriTemplate.of("/api/{apiversion}/repos/{organization}/{repository}/packages").expand(
-            configuration
-        ));  // <4>
+        String uri = "/api/{apiversion}/repos/{organization}/{repository}/packages";
+        HttpRequest req = HttpRequest.GET(UriTemplate.of(uri).expand(configuration.toMap()));  // <4>
         return (Maybe<List<BintrayPackage>>) httpClient.retrieve(req, Argument.of(List.class, BintrayPackage.class)).firstElement();  // <5>
     }
 

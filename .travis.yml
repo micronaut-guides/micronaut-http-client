@@ -6,8 +6,9 @@ jdk:
 - oraclejdk8
 before_script:
 - rm -rf target
-script: "./travis-build.sh"
-env:
+script:
+- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis-build-pr.sh; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis-build.sh; fienv:
   global:
   - secure: jk4xE4E9l0yKgqPkonZZs4zDRoMJrz3eP26X5rb4jNKkTXkXp8t8RRAr0iVRKJGNb5a7oSWnfo5dTNDskQT7qbyD9yFuUI4/xcwulQlOOfevqOEw6HgHyNe3X+PIpVn7hUSaC613b7KXCKBcoKYpeJWpfX6kXhD87vwkURoXrZmqiEvX+zoxuBBLY2Lz91iKfy4QDwxk0YZY0IFVExwaRJq+bgXeMiazxu8GIUFSyIbCN9C6sPP1NVLeTWEBgluzWqL5CShja0WW7iatNXxubqLNRlRX2uZUkUIkUgPR9A55WGdWTRY2xhiUgUo7/BzZmm5mBYcSKupUwtDe+mwCnUU6/Zqw11KjSZeYmBj5DFU2H+pOheCKJFUtMT52XbRTCzUR8pWBRT8HzqiAaMXJ0Syzy8XKwTjXIMb82vpP2i1c27Ael1g+dhNVTzjc0k+2unHrghE3QG3fzu5mzEfW4AqTfToAQM7bxCFFJVY+nltQc/btuqd9YuOlbjVWIfNc+VMQ0gZt+FbGFL7ehT/ChpdXRgPpRV9EzKcFmivZ/kkSyZWcAxT3hiflc4Hc24SkDzEThEOMSUtQ56qssKMcsrDEQzX/EQRmaF/DUvuiyorOotR/ouxRHzRrfuuJuPlFzhUTRw4rolOjm5m+exzJF1Fg0Sb6NLWaCfMevTrKTfc=
   - secure: cwv1QdcddYOBrEKsbc+hxdOp2X6SMrgVIsMVazH+kXLIm8qGekkZxEFmrXZt/BtZ8PkfsuLOtJprMH/TQOifeCew+IPELFJuBCPBToXFToZjvUVF88FPgDtQlJKkhzOo70bgBEwykH0Rn6a46QDa8NIKtvGHHujGv9DWOvc5iBDMf0LyeWR59noPDE4qVerhz5Ms28yjIlRPrgMm+CQ5VY6EtmmILSY2+5POAwST23dqSF9qlFtnxJ9Q7JMyIw0OJuy8+8jsv4XfGozBqt/U7gUcNrAuRSRSrE5Rxj6D0WUHRt82SlSx+z+0vCOA3LHAXMDb6IGG9yAPd+2iRi3xN9YrWlVsvr/YZK1uz/hIKj7xZO8tNZ7hK5ASHUTNEsM2DcXTbfIGM2lmV8NNxiGpAF5+g3F+EZG/BbyYZtMZLlvAoViIPseQ5/CX+koL7g1934LgFjnt1kYuI24dLRhUQp268kgyPFg/ypkHwl4hajadhB/nsFQ+UwKOrIn8rmN+LfCYYln7mD7hSS98AKQsdMvKCzMnPwciFto3Vr1jM0DgE7+oiQMvWoY5NyyeWENCDgVox/0RkqfCIJWlQfjJB96M53sGXLs+qoZ1ox6Lv1XHE1drRTPxevXNBjRdAYCjBWrpkMdFlQ46laY+x9d6/CsGLaLkWnN7X3192ujsxSA=
