@@ -31,7 +31,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'io.micronaut:bom:1.0.0.M1'
+        mavenBom "io.micronaut:bom:$micronautVersion"
     }
 }
 
@@ -44,9 +44,11 @@ dependencies {
     compileOnly "io.micronaut:inject-java"
     runtime "ch.qos.logback:logback-classic:1.2.3"
     testCompile "io.micronaut:inject-java"
+    testCompile "io.micronaut:inject-groovy"
     //tag::spock[]
-    testCompile "org.codehaus.groovy:groovy-all:2.4.15"
-    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4", {
+        exclude module:'groovy-all'
+    }
 //end::spock[]
 }
 

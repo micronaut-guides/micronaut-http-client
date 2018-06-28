@@ -14,17 +14,15 @@ import org.reactivestreams.Publisher;
 @Requires(property = "bintray.token") // <2>
 public class BintrayFilter  implements HttpClientFilter {
 
-    private final String username;
-    private final String token;
 
-    public BintrayFilter(@Value("${bintray.username}") String username,  // <3>
-                         @Value("${bintray.token}") String token ) {
-        this.username = username;
-        this.token = token;
+    private final BintrayConfiguration configuration;
+
+    public BintrayFilter(BintrayConfiguration configuration ) { // <3>
+        this.configuration = configuration;
     }
 
     @Override
     public Publisher<? extends HttpResponse<?>> doFilter(MutableHttpRequest<?> request, ClientFilterChain chain) {
-        return chain.proceed(request.basicAuth(username, token)); // <4>
+        return chain.proceed(request.basicAuth(configuration.getUsername(), configuration.getToken())); // <4>
     }
 }
