@@ -1,10 +1,8 @@
 package example.micronaut;
 
-import io.micronaut.http.annotation.*;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
-
-import java.util.List;
 
 @Controller("/bintray") // <1>
 public class BintrayController {
@@ -25,7 +23,7 @@ public class BintrayController {
     }
 
     @Get("/packages")  // <3>
-    Maybe<List<BintrayPackage>> packages() { // <4>
+    Flowable<BintrayPackage> packages() { // <4>
         return bintrayClient.fetchPackages();
     }
 }
