@@ -1,32 +1,31 @@
 package example.micronaut;
 
-import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.client.*;
+import io.micronaut.http.client.Client;
+import io.micronaut.http.client.RxStreamingHttpClient;
 import io.micronaut.http.uri.UriTemplate;
-import io.reactivex.Maybe;
+import io.reactivex.Flowable;
 
 import javax.inject.Singleton;
-import java.util.List;
 
 @Singleton // <1>
 public class BintrayLowLevelClient {
 
 
-    private final RxHttpClient httpClient;
+    private final RxStreamingHttpClient httpClient;
     private final BintrayConfiguration configuration;
 
-    public BintrayLowLevelClient(@Client(BintrayConfiguration.BINTRAY_API_URL) RxHttpClient httpClient,  // <2>
+    public BintrayLowLevelClient(@Client(BintrayConfiguration.BINTRAY_API_URL) RxStreamingHttpClient httpClient,  // <2>
                                  BintrayConfiguration configuration) {  // <3>
         this.httpClient = httpClient;
         this.configuration = configuration;
     }
 
-    Maybe<List<BintrayPackage>> fetchPackages() {
-        HttpRequest req = HttpRequest.GET(UriTemplate.of("/api/{apiversion}/repos/{organization}/{repository}/packages").expand(
-            configuration
-        ));  // <4>
-        return (Maybe<List<BintrayPackage>>) httpClient.retrieve(req, Argument.of(List.class, BintrayPackage.class)).firstElement();  // <5>
+    Flowable<BintrayPackage> fetchPackages() {
+        String path = "/api/{apiversion}/repos/{organization}/{repository}/packages";
+        String uri = UriTemplate.of(path).expand(configuration);
+        HttpRequest<?> req = HttpRequest.GET(uri);  // <4>
+        return httpClient.jsonStream(req, BintrayPackage.class);
     }
 
 }

@@ -1,6 +1,7 @@
 package example.micronaut;
 
 import io.micronaut.http.annotation.*;
+import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class BintrayController {
     }
 
     @Get("/packages-lowlevel") // <3>
-    Maybe<List<BintrayPackage>> packagesWithLowLevelClient() { // <4>
+    Flowable<BintrayPackage> packagesWithLowLevelClient() { // <4>
         return bintrayLowLevelClient.fetchPackages();
     }
 
