@@ -6,13 +6,11 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.runtime.server.EmbeddedServer
 import spock.lang.AutoCleanup
-import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.HttpRequest
 
-@Ignore("Unit M2 is released")
 class BintrayControllerSpec extends Specification {
 
     @Shared
@@ -28,7 +26,7 @@ class BintrayControllerSpec extends Specification {
 
     def "Verify bintray packages can be fetched with low level HttpClient"() {
         when:
-        HttpRequest request = HttpRequest.GET('/bintray/packageswithlowlevelhttpclient')
+        HttpRequest request = HttpRequest.GET('/bintray/packages-lowlevel')
 
         HttpResponse<List<BintrayPackage>> rsp = client.toBlocking().exchange(request, Argument.of(List, BintrayPackage)) // <4>
 
