@@ -1,8 +1,9 @@
 micronaut:
     application:
-        name: httpclientguide
-    server:
-        port: 8080
+        name: complete
+#Uncomment to set server port
+#    server:
+#        port: 8080
 #tag::bintrayconfig[]
 bintray:
     organization: micronaut
