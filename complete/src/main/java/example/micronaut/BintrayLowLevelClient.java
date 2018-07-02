@@ -21,11 +21,10 @@ public class BintrayLowLevelClient {
         this.configuration = configuration;
     }
 
-    Flowable<BintrayPackage> fetchPackages() {
-        String path = "/api/{apiversion}/repos/{organization}/{repository}/packages";
-        String uri = UriTemplate.of(path).expand(configuration);
-        HttpRequest<?> req = HttpRequest.GET(uri);  // <4>
-        return httpClient.jsonStream(req, BintrayPackage.class);
+    Maybe<List<BintrayPackage>> fetchPackages() {
+        String uri = "/api/{apiversion}/repos/{organization}/{repository}/packages";
+        HttpRequest req = HttpRequest.GET(UriTemplate.of(uri).expand(configuration.toMap()));  // <4>
+        return (Maybe<List<BintrayPackage>>) httpClient.retrieve(req, Argument.of(List.class, BintrayPackage.class)).firstElement();  // <5>
     }
 
 }
