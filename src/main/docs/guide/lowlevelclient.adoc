@@ -1,17 +1,11 @@
 Initially, you will create a Bean which uses the low-level Client API.
 
-Create a couple of objects:
+Create a POJO to parse the JSON response into a Java object:
 
 [source,java]
 .src/main/java/example/micronaut/BintrayPackage.java
 ----
 include::{sourceDir}/src/main/java/example/micronaut/BintrayPackage.java[]
-----
-
-[source,java]
-.src/main/java/example/micronaut/BintrayApi.java
-----
-include::{sourceDir}/src/main/java/example/micronaut/BintrayApi.java[]
 ----
 
 Create `BintrayLowLevelClient`:
@@ -23,7 +17,8 @@ include::{sourceDir}/src/main/java/example/micronaut/BintrayLowLevelClient.java[
 ----
 
 <1> Use `javax.inject.Singleton` to designate a class a a singleton.
-<2> Inject `RxClient` via constructor injection
+<2>  Inject `RxClient` via constructor injection
 <3> Inject the previously defined configuration parameters.
 <4> Creating HTTP Requests is easy thanks to Micronaut’s fluid API.
-<5> Micronaut makes it easy to parse JSON into Java objects. We parse the response to a `List<BintrayPackage>`
+<5> Use `retrieve` to perform an HTTP request for the given request object and convert the full HTTP response's body into the specified type. e.g. `List<BintrayPackage>`.
+<6> The `retrieve` method returns a Flowable which has a firstElement method that returns the first emitted item or nothing

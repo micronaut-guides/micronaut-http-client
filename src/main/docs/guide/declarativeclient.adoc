@@ -1,4 +1,4 @@
-Tt is time to take a look at Micronaut’s support for declarative clients via the Client annotation.
+It is time to take a look at Micronaut’s support for declarative clients via the Client annotation.
 
 Create `BintrayClient` which clearly illustrates how a declarative Micronaut HTTP Client, which is generated at compile-time, simplifies our code.
 

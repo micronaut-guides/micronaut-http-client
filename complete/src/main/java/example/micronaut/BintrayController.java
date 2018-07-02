@@ -1,8 +1,12 @@
 package example.micronaut;
 
+import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+
+import java.util.List;
 
 @Controller("/bintray") // <1>
 public class BintrayController {
@@ -18,11 +22,11 @@ public class BintrayController {
     }
 
     @Get("/packages-lowlevel") // <3>
-    Flowable<BintrayPackage> packagesWithLowLevelClient() { // <4>
+    Maybe<List<BintrayPackage>> packagesWithLowLevelClient() { // <4>
         return bintrayLowLevelClient.fetchPackages();
     }
 
-    @Get("/packages")  // <3>
+    @Get(uri = "/packages", produces = MediaType.APPLICATION_JSON_STREAM)  // <6>
     Flowable<BintrayPackage> packages() { // <4>
         return bintrayClient.fetchPackages();
     }
