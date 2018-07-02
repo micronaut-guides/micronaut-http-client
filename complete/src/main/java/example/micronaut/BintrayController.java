@@ -26,8 +26,8 @@ public class BintrayController {
         return bintrayLowLevelClient.fetchPackages();
     }
 
-    @Get(uri = "/packages", produces = MediaType.APPLICATION_JSON_STREAM)  // <6>
-    Flowable<BintrayPackage> packages() { // <4>
+    @Get(uri = "/packages", produces = MediaType.APPLICATION_JSON_STREAM)  // <5>
+    Flowable<BintrayPackage> packages() { // <6>
         return bintrayClient.fetchPackages();
     }
 }
