@@ -22,3 +22,9 @@ include::{sourceDir}/src/main/java/example/micronaut/BintrayLowLevelClient.java[
 <4> Creating HTTP Requests is easy thanks to Micronaut’s fluid API.
 <5> Use `retrieve` to perform an HTTP request for the given request object and convert the full HTTP response's body into the specified type. e.g. `List<BintrayPackage>`.
 <6> The `retrieve` method returns a Flowable which has a firstElement method that returns the first emitted item or nothing
+
+NOTE: Instead of `retrieve` we could have used `jsonStream`. You can use `jsonStream()` to stream arrays of type `application/json` or
+JSON streams of type `application/x-json-stream`. If we use `retrieve`, such as in the previous code listing, the operation will not block.
+However, it will not return until all the data has been received from the server. In the case of a JSON array that would be the whole array.
+However, if you are interested in just the first element of the array, `jsonStream` provides a better alternative since it starts streaming data from the server without needing the whole response.
+For example, `jsonStream().firstElement()` will only parse the first item in a JSON array. Hence it is more efficient.
