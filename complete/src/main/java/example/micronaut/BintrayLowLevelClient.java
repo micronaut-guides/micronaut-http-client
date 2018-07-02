@@ -17,17 +17,16 @@ public class BintrayLowLevelClient {
 
 
     private final RxHttpClient httpClient;
-    private final BintrayConfiguration configuration;
+    private final String uri;
 
     public BintrayLowLevelClient(@Client(BintrayConfiguration.BINTRAY_API_URL) RxHttpClient httpClient,  // <2>
                                  BintrayConfiguration configuration) {  // <3>
         this.httpClient = httpClient;
-        this.configuration = configuration;
+        String path = "/api/{apiversion}/repos/{organization}/{repository}/packages";
+        uri = UriTemplate.of(path).expand(configuration.toMap());
     }
 
     Maybe<List<BintrayPackage>> fetchPackages() {
-        String path = "/api/{apiversion}/repos/{organization}/{repository}/packages";
-        String uri = UriTemplate.of(path).expand(configuration.toMap());
         HttpRequest<?> req = HttpRequest.GET(uri);  // <4>
         Flowable flowable = httpClient.retrieve(req, Argument.of(List.class, BintrayPackage.class)); // <5>
         return (Maybe<List<BintrayPackage>>) flowable.firstElement(); // <6>
