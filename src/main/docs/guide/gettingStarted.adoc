@@ -1,1 +1,1 @@
-In this guide we are going to create a Micronaut app written in Java.
+In this guide we are going to create a Micronaut app written in Java to consume the Bintray API with the Micronaut HTTP Client.
