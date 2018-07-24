@@ -54,7 +54,7 @@ class BintrayControllerSpec extends Specification {
 
         then:
         for (String name : expectedProfileNames) {
-            assert packages*.name.contains(name)
+            assert bintrayPackages*.name.contains(name)
         }
     }
 }
