@@ -2,9 +2,8 @@ package example.micronaut;
 
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.client.Client;
 import io.micronaut.http.client.RxHttpClient;
+import io.micronaut.http.client.annotation.Client;
 import io.micronaut.http.uri.UriTemplate;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
