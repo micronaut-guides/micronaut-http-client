@@ -1,26 +1,24 @@
 package example.micronaut
 
-import io.micronaut.context.ApplicationContext
 import io.micronaut.core.type.Argument
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.RxStreamingHttpClient
-import io.micronaut.runtime.server.EmbeddedServer
+import io.micronaut.http.client.annotation.Client
+import io.micronaut.test.annotation.MicronautTest
 import io.reactivex.Flowable
-import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
 
+import javax.inject.Inject
+
+@MicronautTest // <1>
 class BintrayControllerSpec extends Specification {
 
-    @Shared
-    @AutoCleanup // <1>
-    EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer) // <2>
-
-    @Shared
-    @AutoCleanup
-    RxStreamingHttpClient client = embeddedServer.applicationContext.createBean(RxStreamingHttpClient, embeddedServer.getURL()) // <3>
+    @Inject
+    @Client("/")
+    RxStreamingHttpClient client // <2>
 
     @Shared
     List<String> expectedProfileNames = ['base', 'federation', 'function', 'function-aws', 'service']
@@ -29,12 +27,12 @@ class BintrayControllerSpec extends Specification {
         when:
         HttpRequest request = HttpRequest.GET('/bintray/packages-lowlevel')
 
-        HttpResponse<List<BintrayPackage>> rsp = client.toBlocking().exchange(request, // <4>
-                Argument.of(List, BintrayPackage)) // <5>
+        HttpResponse<List<BintrayPackage>> rsp = client.toBlocking().exchange(request, // <3>
+                Argument.listOf(BintrayPackage)) // <4>
 
         then: 'the endpoint can be accessed'
-        rsp.status == HttpStatus.OK  // <6>
-        rsp.body() // <7>
+        rsp.status == HttpStatus.OK  // <5>
+        rsp.body() // <6>
 
         when:
         List<BintrayPackage> packages = rsp.body()
@@ -49,7 +47,7 @@ class BintrayControllerSpec extends Specification {
         when:
         HttpRequest request = HttpRequest.GET('/bintray/packages')
 
-        Flowable<BintrayPackage> bintrayPackageStream = client.jsonStream(request, BintrayPackage) // <8>
+        Flowable<BintrayPackage> bintrayPackageStream = client.jsonStream(request, BintrayPackage) // <7>
         Iterable<BintrayPackage> bintrayPackages = bintrayPackageStream.blockingIterable()
 
         then:
