@@ -1,5 +1,8 @@
 package example.micronaut;
 
+import io.micronaut.core.annotation.Introspected;
+
+@Introspected
 public class BintrayPackage {
     String name;
     boolean linked;
