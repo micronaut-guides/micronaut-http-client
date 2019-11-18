@@ -1,12 +1,9 @@
 micronaut:
-    application:
-        name: complete
-#Uncomment to set server port
-#    server:
-#        port: 8080
+  application:
+    name: complete
 #tag::bintrayconfig[]
 bintray:
-    organization: micronaut
-    repository: profiles
-    apiversion: v1
+  organization: micronaut
+  repository: profiles
+  apiversion: v1
 #end::bintrayconfig[]
