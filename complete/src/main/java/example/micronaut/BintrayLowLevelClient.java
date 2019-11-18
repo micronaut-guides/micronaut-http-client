@@ -14,7 +14,6 @@ import java.util.List;
 @Singleton // <1>
 public class BintrayLowLevelClient {
 
-
     private final RxHttpClient httpClient;
     private final String uri;
 

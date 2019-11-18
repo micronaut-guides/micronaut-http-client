@@ -16,10 +16,10 @@ Create `BintrayLowLevelClient`:
 include::{sourceDir}/src/main/java/example/micronaut/BintrayLowLevelClient.java[]
 ----
 
-<1> Use `javax.inject.Singleton` to designate a class a a singleton.
-<2>  Inject `RxClient` via constructor injection
+<1> Use `javax.inject.Singleton` to designate a class as a singleton.
+<2> Inject `RxClient` via constructor injection.
 <3> Inject the previously defined configuration parameters.
-<4> Creating HTTP Requests is easy thanks to Micronaut’s fluid API.
+<4> Creating HTTP Requests is easy thanks to Micronaut's fluid API.
 <5> Use `retrieve` to perform an HTTP request for the given request object and convert the full HTTP response's body into the specified type. e.g. `List<BintrayPackage>`.
 <6> The `retrieve` method returns a Flowable which has a firstElement method that returns the first emitted item or nothing
 

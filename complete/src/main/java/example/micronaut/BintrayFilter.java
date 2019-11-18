@@ -11,11 +11,11 @@ import org.reactivestreams.Publisher;
 @Filter("/api/${bintray.apiversion}/repos/**") // <1>
 @Requires(property = BintrayConfiguration.PREFIX + ".username") // <2>
 @Requires(property = BintrayConfiguration.PREFIX + ".token") // <2>
-public class BintrayFilter  implements HttpClientFilter {
+public class BintrayFilter implements HttpClientFilter {
 
     private final BintrayConfiguration configuration;
 
-    public BintrayFilter(BintrayConfiguration configuration ) { // <3>
+    public BintrayFilter(BintrayConfiguration configuration) { // <3>
         this.configuration = configuration;
     }
 

@@ -28,11 +28,11 @@ Add your Bintray `username` and `token` to `src/main/resource/application.yml`
 [source, yaml]
 ----
 bintray:
-    organization: micronaut
-    repository: profiles
-    apiversion: v1
-    username: yourbintrayusername
-    token: XXXXXXXXXXX
+  organization: micronaut
+  repository: profiles
+  apiversion: v1
+  username: yourbintrayusername
+  token: XXXXXXXXXXX
 ----
 
 Add to `src/main/resources/logback.xml`, a logger to see Micronaut's HTTP client output.
