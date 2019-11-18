@@ -18,7 +18,7 @@ Modify `src/main/resources/application.yml` to create some configuration paramet
 include::{sourceDir}/src/main/resources/application.yml[tag=bintrayconfig]
 ----
 
-To encapsulate type-safe configuration retrieval, we use a https://docs.micronaut.io/snapshot/guide/index.html#configurationProperties[`@ConfigurationProperties`] object:
+To encapsulate type-safe configuration retrieval, we use a https://docs.micronaut.io/latest/guide/index.html#configurationProperties[`@ConfigurationProperties`] object:
 
 [source,java]
 .src/main/java/example/micronaut/BintrayConfiguration.java
@@ -26,6 +26,6 @@ To encapsulate type-safe configuration retrieval, we use a https://docs.micronau
 include::{sourceDir}/src/main/java/example/micronaut/BintrayConfiguration.java[]
 ----
 
-In this guide, you are going to fetch https://bintray.com/micronaut/profiles[Micronaut profiles packages]. Those packages are used by the https://docs.micronaut.io/snapshot/guide/index.html#cli[Micronaut CLI].
+In this guide, you are going to fetch https://bintray.com/micronaut/profiles[Micronaut profiles packages]. Those packages are used by the https://docs.micronaut.io/latest/guide/index.html#cli[Micronaut CLI].
 
 To consume the Bintray API, you will use Micronaut HTTP Client.
