@@ -4,8 +4,9 @@ import io.micronaut.core.annotation.Introspected;
 
 @Introspected
 public class BintrayPackage {
-    String name;
-    boolean linked;
+
+    private String name;
+    private boolean linked;
 
     public String getName() {
         return name;
