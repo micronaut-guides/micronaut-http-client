@@ -12,3 +12,5 @@ testingTheApp:
   title: Testing the Application
 httpClientFilter: Http Client Filter
 next: Where To Go From Here?
+help:
+  title: Help with Micronaut
