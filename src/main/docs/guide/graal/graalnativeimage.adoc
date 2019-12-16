@@ -1,0 +1,12 @@
+include::{commondir}/common-graal-install.adoc[]
+
+include::{commondir}/common-graal-nativeimage.adoc[]
+
+You can execute the `bintray/packages` endpoint exposed by the native image:
+
+[source, bash]
+----
+curl localhost:8080/bintray/packages'
+
+{"name":"base","linked":false}{"name":"federation","linked":false}{"name":"function","linked":false}{"name":"function-aws","linked":false}{"name":"service","linked":false}{"name":"cli","linked":false}{"name":"kafka","linked":false}{"name":"profile","linked":false}{"name":"function-aws-alexa","linked":false}{"name":"grpc","linked":false}{"name":"configuration","linked":false}{"name":"rabbitmq","linked":false}% }
+----

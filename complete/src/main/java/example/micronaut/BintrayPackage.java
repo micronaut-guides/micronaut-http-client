@@ -8,6 +8,10 @@ public class BintrayPackage {
     private String name;
     private boolean linked;
 
+    public BintrayPackage() {
+
+    }
+
     public String getName() {
         return name;
     }

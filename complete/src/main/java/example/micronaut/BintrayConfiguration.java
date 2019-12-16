@@ -62,14 +62,4 @@ public class BintrayConfiguration {
     public void setToken(String token) {
         this.token = token;
     }
-
-    public Map<String, Object> toMap() {
-        Map<String, Object> m = new HashMap<>();
-        m.put("apiversion", getApiversion());
-        m.put("organization", getOrganization());
-        m.put("repository", getRepository());
-        m.put("username", getUsername());
-        m.put("token", getToken());
-        return m;
-    }
 }
