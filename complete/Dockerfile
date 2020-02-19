@@ -1,4 +1,4 @@
-FROM oracle/graalvm-ce:19.3.1-java8 as graalvm
+FROM oracle/graalvm-ce:20.0.0-java8 as graalvm
 RUN gu install native-image
 
 COPY . /home/app/micronautguide
