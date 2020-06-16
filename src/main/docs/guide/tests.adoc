@@ -1,11 +1,9 @@
-include::{commondir}/common-spockinjavaapp.adoc[]
-
 Create a test which verifies both clients work as expected and the controller echoes the output of the Bintray API in a Reactive way.
 
-[source,groovy]
-.src/test/groovy/example/micronaut/BintrayControllerSpec.groovy
+[source,java]
+.src/test/java/example/micronaut/BintrayControllerTest.java
 ----
-include::{sourceDir}/src/test/groovy/example/micronaut/BintrayControllerSpec.groovy[]
+include::{sourceDir}/src/test/java/example/micronaut/BintrayControllerTest.java[]
 ----
 
 <1> Annotate the class with `@MicronatTest` to let Micronaut starts the embedded server and inject the beans. More info: https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html[https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html].

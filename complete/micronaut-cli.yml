@@ -1,6 +1,6 @@
 applicationType: default
 defaultPackage: example.micronaut
-testFramework: spock
+testFramework: junit
 sourceLanguage: java
 buildTool: gradle
-features: [app-name, docker, graalvm, gradle, http-client, java, java-application, logback, netty-server, readme, shade, spock, yaml]
+features: [app-name, docker, file-watch, graalvm, gradle, http-client, java, java-application, junit, logback, netty-server, readme, shade, yaml]
